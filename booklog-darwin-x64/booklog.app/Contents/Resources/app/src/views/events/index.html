@@ -1,0 +1,111 @@
+<template>
+  <!-- **********************************************************************************************************************************************************
+  MAIN SIDEBAR MENU
+  *********************************************************************************************************************************************************** -->
+  <!--sidebar start-->
+  <aside>
+      <div id="sidebar"  class="nav-collapse ">
+          <!-- sidebar menu start-->
+          <ul class="sidebar-menu" id="nav-accordion">
+
+              <p class="centered"><a href="profile.html"><img src="assets/img/small_logo.jpg" class="img-circle" width="60"></a></p>
+              <h5 class="centered">${name}</h5>
+
+              <li class="mt">
+                  <a href="#">
+                      <i class="fa fa-dashboard"></i>
+                      <span>Dashboard</span>
+                  </a>
+              </li>
+
+              <li class="mt" repeat.for="c of clubs">
+                  <a class="${clubId == c.id ? 'active' : ''}" href="#club/${c.id}">
+                      <i class="fa fa-users"></i>
+                      <span>${c.name}</span>
+                  </a>
+              </li>
+
+              <li class="mt">
+                  <a href="#club/create">
+                  <span>Create a new club +</span>
+                  </a>
+              </li>
+
+          </ul>
+          <!-- sidebar menu end-->
+      </div>
+  </aside>
+  <!--sidebar end-->
+
+  <!-- **********************************************************************************************************************************************************
+  MAIN CONTENT
+  *********************************************************************************************************************************************************** -->
+  <!--main content start-->
+  <section id="main-content">
+      <section class="wrapper">
+          <div class="row">
+            <div class="col-xs-12">
+              <h1>
+                ${event.name}
+                <span class="pull-right">
+                  <button type="button" class="btn btn-primary" click.delegate="edit()">${editing ? 'Cancel' : 'Edit'}</button>
+                </span>
+              </h1>
+            </div>
+            <div class="col-xs-12">
+              <form>
+                <div class="form-group">
+                  <label for="event.name">Name</label>
+                  <input class="form-control" value.two-way="event.name" placeholder="Enter name here..." if.bind="editing" autofocus>
+                  <span class="form-control" if.bind="!editing">${event.name}</span>
+                </div>
+                <div class="form-group">
+                  <label for="event.color">Start</label>
+                  <input type="date" class="form-control" value.two-way="event.startDate" placeholder="Enter start date here..." if.bind="editing">
+                  <span class="form-control" if.bind="!editing">${event.startDate}</span>
+                </div>
+                <div class="form-group">
+                  <label for="event.endDate">End</label>
+                  <input type="date" class="form-control" value.two-way="event.endDate" placeholder="Enter end date here..." if.bind="editing">
+                  <span class="form-control" if.bind="!editing">${event.endDate}</span>
+                </div>
+                <div class="form-group">
+                  <label for="event.readers.length"># of Readers</label>
+                  <span class="form-control">${event.readers.length}</span>
+                </div>
+                <button type="button" class="btn btn-primary" click.delegate="save()" if.bind="editing">Update</button>
+                <button type="button" class="btn btn-danger" click.delegate="delete()" if.bind="editing">
+                  <span>Delete </span>
+                  <i class="fa fa-trash"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 text-muted" if.bind="!event.readers.length">No events</div>
+            <div class="col-md-4 mb" repeat.for="reader of event.readers">
+              <a href="#events/${event.id}">
+                <!-- WHITE PANEL - TOP USER -->
+                <div class="white-panel pn">
+                  <div class="white-header">
+                    <h5>${reader.firstName} ${reader.lastName}</h5>
+                  </div>
+                  <p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
+                  <p><b></b></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="small mt">Points</p>
+                      <p>${reader.points}</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="small mt"># of Books</p>
+                      <p>${reader.books.length ? reader.books.length : 0}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div><!-- /col-md-4 -->
+          </div><!-- /row -->
+      </section>
+  </section>
+</template>
