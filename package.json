@@ -1,18 +1,16 @@
 {
-  "name": "booklogdashboard",
-  "description": "An Aurelia client application.",
+  "name": "booklog.dashboard",
+  "description": "A dashboard for booklog",
   "version": "0.1.0",
-  "repository": {
-    "type": "???",
-    "url": "???"
-  },
+  "repository": "https://github.com/DJCrossman/booklog.dashboard",
   "license": "MIT",
   "dependencies": {
-    "aurelia-bootstrapper": "^1.0.0",
-    "aurelia-fetch-client": "^1.0.0",
     "aurelia-animator-css": "^1.0.0",
+    "aurelia-bootstrapper": "^1.0.0",
+    "aurelia-fetch-client": "^1.1.1",
     "bluebird": "^3.4.1",
     "electron": "^1.6.2",
+    "moment": "^2.17.1",
     "whatwg-fetch": "^2.0.2"
   },
   "peerDependencies": {},

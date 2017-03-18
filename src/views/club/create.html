@@ -1,0 +1,67 @@
+<template>
+  <!-- **********************************************************************************************************************************************************
+  MAIN SIDEBAR MENU
+  *********************************************************************************************************************************************************** -->
+  <!--sidebar start-->
+  <aside>
+      <div id="sidebar"  class="nav-collapse ">
+          <!-- sidebar menu start-->
+          <ul class="sidebar-menu" id="nav-accordion">
+
+              <p class="centered"><a href="profile.html"><img src="assets/img/small_logo.jpg" class="img-circle" width="60"></a></p>
+              <h5 class="centered">${name}</h5>
+
+              <li class="mt">
+                  <a href="#">
+                      <i class="fa fa-dashboard"></i>
+                      <span>Dashboard</span>
+                  </a>
+              </li>
+
+              <li class="mt" repeat.for="c of clubs">
+                  <a href="#club/${c.id}">
+                      <i class="fa fa-users"></i>
+                      <span>${c.name}</span>
+                  </a>
+              </li>
+
+              <li class="mt">
+                  <a class="active" href="#club/create">
+                  <span>Create a new club +</span>
+                  </a>
+              </li>
+
+          </ul>
+          <!-- sidebar menu end-->
+      </div>
+  </aside>
+  <!--sidebar end-->
+
+  <!-- **********************************************************************************************************************************************************
+  MAIN CONTENT
+  *********************************************************************************************************************************************************** -->
+  <!--main content start-->
+  <section id="main-content">
+      <section class="wrapper">
+          <div class="row">
+            <div class="col-xs-12">
+              <h1>${club.name ? club.name : 'Create club'}</h1>
+            </div>
+            <div class="col-xs-12">
+              <form>
+                <div class="form-group">
+                  <label for="club.name">Name</label>
+                  <input class="form-control" value.two-way="club.name" placeholder="Enter name here...">
+                </div>
+                <div class="form-group">
+                  <label for="club.color">Color</label>
+                  <input class="form-control" id="club.color" value.two-way="club.color" placeholder="Enter hex color here...">
+                </div>
+                <button type="button" class="btn btn-primary" click.delegate="save()">Create</button>
+              </form>
+            </div>
+            <div
+          </div>
+      </section>
+  </section>
+</template>

@@ -1,0 +1,106 @@
+<template>
+  <!-- **********************************************************************************************************************************************************
+  MAIN SIDEBAR MENU
+  *********************************************************************************************************************************************************** -->
+  <!--sidebar start-->
+  <aside>
+      <div id="sidebar"  class="nav-collapse ">
+          <!-- sidebar menu start-->
+          <ul class="sidebar-menu" id="nav-accordion">
+
+              <p class="centered"><a href="profile.html"><img src="assets/img/small_logo.jpg" class="img-circle" width="60"></a></p>
+              <h5 class="centered">${name}</h5>
+
+              <li class="mt">
+                  <a href="#">
+                      <i class="fa fa-dashboard"></i>
+                      <span>Dashboard</span>
+                  </a>
+              </li>
+
+              <li class="mt" repeat.for="c of clubs">
+                  <a class="${clubId == c.id ? 'active' : ''}" href="#club/${c.id}">
+                      <i class="fa fa-users"></i>
+                      <span>${c.name}</span>
+                  </a>
+              </li>
+
+              <li class="mt">
+                  <a href="#club/create">
+                  <span>Create a new club +</span>
+                  </a>
+              </li>
+
+          </ul>
+          <!-- sidebar menu end-->
+      </div>
+  </aside>
+  <!--sidebar end-->
+
+  <!-- **********************************************************************************************************************************************************
+  MAIN CONTENT
+  *********************************************************************************************************************************************************** -->
+  <!--main content start-->
+  <section id="main-content">
+      <section class="wrapper">
+          <div class="row">
+            <div class="col-xs-12">
+              <h1>
+                ${club.name}
+                <span class="pull-right">
+                  <button type="button" class="btn btn-primary" click.delegate="edit()">${editing ? 'Cancel' : 'Edit'}</button>
+                </span>
+              </h1>
+            </div>
+            <div class="col-xs-12">
+              <form>
+                <div class="form-group">
+                  <label for="club.name">Name</label>
+                  <input class="form-control" value.two-way="club.name" placeholder="Enter name here..." if.bind="editing" autofocus>
+                  <span class="form-control" if.bind="!editing">${club.name}</span>
+                </div>
+                <div class="form-group">
+                  <label for="club.color">Color</label>
+                  <input class="form-control" value.two-way="club.color" placeholder="Enter color here..." if.bind="editing">
+                  <span class="form-control" if.bind="!editing">${club.color}</span>
+                </div>
+                <div class="form-group">
+                  <label for="club.readers.length"># of Readers</label>
+                  <span class="form-control">${club.readers.length}</span>
+                </div>
+                <button type="button" class="btn btn-primary" click.delegate="save()" if.bind="editing">Update</button>
+                <button type="button" class="btn btn-danger" click.delegate="delete()" if.bind="editing">
+                  <span>Delete </span>
+                  <i class="fa fa-trash"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 text-muted" if.bind="!club.events.length">No events</div>
+            <div class="col-md-4 mb" repeat.for="event of club.events">
+              <a href="/#club/${club.id}/events/${event.id}">
+                <!-- WHITE PANEL - TOP USER -->
+                <div class="white-panel pn">
+                  <div class="white-header">
+                    <h5>${event.name}</h5>
+                  </div>
+                  <p><img src="assets/img/ui-danro.jpg" class="img-circle" width="80"></p>
+                  <p><b></b></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="small mt"># OF READERS</p>
+                      <p>${event.readers.length}</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="small mt">END DATE</p>
+                      <p>${event.endDate}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div><!-- /col-md-4 -->
+          </div><!-- /row -->
+      </section>
+  </section>
+</template>
